@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int R[101][101];
+     int Answer(int i, int j, int m,int n)
+    {
+        if(i >= m || j >= n)
+            return 0;
+        if(i == m-1 && j == n-1)
+             return 1;
+        if(R[i][j] != -1)
+            return R[i][j];
+        int right = Answer(i,j+1,m,n);
+        int down = Answer(i+1,j,m,n);
+        return R[i][j] = right+down;
+    }
+    int uniquePaths(int m, int n) {
+        memset(R,-1,sizeof(R));
+        return Answer(0,0,m,n);
+    }
+};
